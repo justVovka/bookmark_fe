@@ -7,8 +7,9 @@ import {v4} from "uuid";
 class App extends Component {
 
   books = [
-    {id: v4(), title: "React In Action", totalPages: 898, myPage: 125},
+    {id: v4(), title: "React In Action", totalPages: 898, myPage: 25},
     {id: v4(), title: "JavaScript for Beginners", totalPages: 435, myPage: 376},
+    {id: v4(), title: "CSS for Professionals", totalPages: 450, myPage: 225},
   ];
 
   render() {
