@@ -7,7 +7,7 @@ class Items extends Component {
 
   render() {
     const { books } = this.props;
-    const items = books.map(item => <Item key={item.id} item={item} />);
+    const items = books.map(item => <Item key={item._id} item={item} />);
 
     return (
       <div className="cards">

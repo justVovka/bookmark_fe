@@ -2,22 +2,30 @@ import React, {Component} from "react";
 
 import "./app.sass";
 import Items from "../items";
-import {v4} from "uuid";
+import ApiService from "../../services/api-service";
 
 class App extends Component {
 
-  books = [
-    {id: v4(), title: "React In Action", totalPages: 898, myPage: 25},
-    {id: v4(), title: "JavaScript for Beginners", totalPages: 435, myPage: 376},
-    {id: v4(), title: "CSS for Professionals", totalPages: 450, myPage: 225},
-  ];
+  state = {
+    books: []
+  };
+
+  apiService = new ApiService();
+
+  componentDidMount() {
+    this.apiService.getData()
+      .then((res) => this.setState({
+          books: res.data
+        })
+      )
+  }
 
   render() {
     return (
       <div className="app">
         <div className="wrap">
           <h1 className="app_title mb-5">Я сейчас читаю:</h1>
-          <Items books={this.books} />
+          <Items books={this.state.books} />
         </div>
       </div>
     );
