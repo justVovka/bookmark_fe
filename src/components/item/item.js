@@ -22,7 +22,7 @@ class Item extends Component {
           <Card.Body>
             <Card.Title>{item.title}</Card.Title>
             <Card.Text>
-              Прочёл <strong>{item.myPage}</strong> страниц из <strong>{item.totalPages}</strong>.
+              Читаю <strong>{item.myPage}</strong> страницу из <strong>{item.totalPages}</strong>.
             </Card.Text>
               <ProgressBar animated striped variant={progressVariantColor} now={percents} label={`${percents}%`}/>
           </Card.Body>
