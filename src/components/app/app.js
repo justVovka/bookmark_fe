@@ -5,11 +5,13 @@ import './app.sass';
 import Items from '../items';
 import ApiService from '../../services/api-service';
 import AddBookModal from '../add-book-modal';
+import Loader from '../loader';
 
 class App extends Component {
   state = {
     books: [],
     showModal: false,
+    isLoading: false,
   };
 
   apiService = new ApiService();
@@ -19,6 +21,7 @@ class App extends Component {
       const books = Object.values(res);
       this.setState({
         books,
+        isLoading: true,
       });
     });
   }
@@ -45,7 +48,11 @@ class App extends Component {
           <AddBookModal show={this.state.showModal} onHide={this.handleClose} />
 
           <h1 className="app_title mb-5">Я сейчас читаю:</h1>
-          <Items books={this.state.books} />
+          {this.state.isLoading ? (
+            <Items books={this.state.books} />
+          ) : (
+            <Loader />
+          )}
         </div>
       </div>
     );
