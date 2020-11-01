@@ -1,19 +1,18 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import "./items.sass";
-import Item from "../item";
+import './items.sass';
+import Item from '../item';
 
 class Items extends Component {
-
   render() {
     const { books } = this.props;
-    const items = books.map(item => <Item key={item._id} item={item} />);
+    const items = books.map((item) => {
+      return <Item key={item.id} item={item} />;
+    });
 
     return (
       <div className="cards">
-        <ol>
-          {items}
-        </ol>
+        <ol>{items}</ol>
       </div>
     );
   }

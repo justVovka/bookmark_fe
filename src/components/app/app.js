@@ -1,26 +1,26 @@
-import React, {Component} from "react";
-import Button from "react-bootstrap/Button";
+import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
 
-import "./app.sass";
-import Items from "../items";
-import ApiService from "../../services/api-service";
-import AddBookModal from "../add-book-modal";
+import './app.sass';
+import Items from '../items';
+import ApiService from '../../services/api-service';
+import AddBookModal from '../add-book-modal';
 
 class App extends Component {
-
   state = {
     books: [],
-    showModal: false
+    showModal: false,
   };
 
   apiService = new ApiService();
 
   componentDidMount() {
-    this.apiService.getData()
-      .then((res) => this.setState({
-          books: res.data
-        })
-      )
+    this.apiService.getData().then((res) => {
+      const books = Object.values(res);
+      this.setState({
+        books,
+      });
+    });
   }
 
   handleClose = () => {
@@ -35,8 +35,13 @@ class App extends Component {
     return (
       <div className="app">
         <div className="wrap">
-
-          <Button className="float-right" variant="primary" onClick={this.handleShow}>Добавить новую книгу</Button>
+          <Button
+            className="float-right"
+            variant="primary"
+            onClick={this.handleShow}
+          >
+            Добавить новую книгу
+          </Button>
           <AddBookModal show={this.state.showModal} onHide={this.handleClose} />
 
           <h1 className="app_title mb-5">Я сейчас читаю:</h1>
@@ -44,7 +49,7 @@ class App extends Component {
         </div>
       </div>
     );
-  };
+  }
 }
 
 export default App;
